@@ -1,1 +1,1 @@
-# MultiFlow-Robust-Multimodal-Representation-Learning-for-Encrypted-Network-Traffic-Classification
+# DualFlow: Interaction-Aware Dual-Modality Representation Learning for Encrypted Traffic Classification
