@@ -1,5 +1,4 @@
-# Install a matching torch/torchvision pair for your CUDA driver first.
-# Python 3.10 is a practical starting point; the manuscript reports PyTorch 1.8.0.
+# Python 3.10; install a torch/torchvision pair matching your CUDA driver.
 torch>=1.8,<3
 torchvision>=0.9,<1
 numpy>=1.21,<2
@@ -12,10 +11,3 @@ Pillow>=9,<12
 tensorboard>=2.8,<3
 tqdm>=4.62,<5
 six>=1.12,<2
-packaging>=20
-regex
-# Optional legacy preprocessing tools:
-# pyshark>=0.6
-# dpkt>=1.9.8
-# seaborn>=0.11
-# sentencepiece (only when using --spm_model_path)

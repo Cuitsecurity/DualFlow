@@ -19,30 +19,7 @@ random.seed(40)
 # =========================
 # 批量数据集配置
 # =========================
-BASE_OUTPUT_DIR = "/3241903007/workstation/AnomalyTrafficDetection/ConfusionModel/datasets/datasets5_27"
-
-DATASETS = [
-    {
-        "name": "ISCX-VPN-NonVPN-2016",
-        "pcap_root": "/3241903007/workstation/AnomalyTrafficDetection/dataset/ISCX-VPN-NonVPN-2016/datasets/flows",
-    },
-    {
-        "name": "ISCX-Tor-NonTor-2017",
-        "pcap_root": "/3241903007/workstation/AnomalyTrafficDetection/dataset/ISCX-Tor-NonTor-2017/flows",
-    },
-    {
-        "name": "CSTNET-TLS1.3",
-        "pcap_root": "/3241903007/workstation/AnomalyTrafficDetection/dataset/cstnet-tls1.3/pcap",
-    },
-    {
-        "name": "USTC-TFC2016",
-        "pcap_root": "/3241903007/workstation/AnomalyTrafficDetection/MutilFlow/datasets/own_lyj/USTC-TFC2016/pcap_all",
-    },
-    {
-        "name": "IOT",
-        "pcap_root": "/3241903007/workstation/AnomalyTrafficDetection/MutilFlow/datasets/own_lyj/IOT/pcap",
-    }
-]
+BASE_OUTPUT_DIR = "."
 
 
 # =========================
@@ -521,6 +498,24 @@ def process_dataset(cfg):
     main()
 
 
+def cli():
+    import argparse
+    parser = argparse.ArgumentParser(description="Extract MultiFlow features from labeled flow PCAPs.")
+    parser.add_argument("--pcap-root", required=True)
+    parser.add_argument("--output-dir", required=True)
+    parser.add_argument("--max-flows-per-label", type=int, default=500)
+    args = parser.parse_args()
+    if not os.path.isdir(args.pcap_root):
+        parser.error("--pcap-root must contain one directory per class")
+    if args.max_flows_per_label < 1:
+        parser.error("--max-flows-per-label must be positive")
+    global BASE_OUTPUT_DIR
+    target = os.path.abspath(args.output_dir)
+    BASE_OUTPUT_DIR = os.path.dirname(target)
+    process_dataset({"name": os.path.basename(target),
+                     "pcap_root": os.path.abspath(args.pcap_root),
+                     "max_flows_per_label": args.max_flows_per_label})
+
+
 if __name__ == "__main__":
-    for cfg in DATASETS:
-        process_dataset(cfg)
+    cli()

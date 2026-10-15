@@ -8,7 +8,7 @@ shift 2
 mkdir -p "outputs/$name" "runs/$name"
 export PYTHONPATH="$PWD${PYTHONPATH:+:$PYTHONPATH}"
 export MULTIFLOW_LOG_DIR="${MULTIFLOW_LOG_DIR:-runs/$name}"
-python3 -u code_5_28/classfiy_New_wiseGatedFusion.py \
+python3 -u src/models/train.py \
   --train_path "$splits/train.csv" --dev_path "$splits/valid.csv" \
   --test_path "$splits/test.csv" \
   --vocab_path models/encryptd_vocab.txt \
