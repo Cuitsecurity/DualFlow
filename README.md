@@ -19,6 +19,7 @@ src/
 │   └── extract_features.py # Session PCAPs → payload + statistical features
 └── models/
     └── train.py            # MultiFlow training and best-checkpoint testing
+datasets/README.md         # Dataset descriptions and download links
 scripts/train.sh            # Training command with explicit settings
 models/bert/paper_config.json
 uer/                        # Required ET-BERT/UER support modules
@@ -28,6 +29,8 @@ licenses/UER-LICENSE        # Upstream license
 The `uer/` files are dependencies imported by the existing model. Historical experiments, duplicate preprocessing variants and unrelated models are omitted. The model computation and feature extraction logic are preserved from the research project; the scripts expose paths for use on another machine.
 
 ## 1. Datasets
+
+See [datasets/README.md](datasets/README.md) for dataset descriptions, download links and data preparation instructions.
 
 | Dataset | Classification task | Classes | Train | Dev | Test |
 |---|---|---:|---:|---:|---:|
